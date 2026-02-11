@@ -33,7 +33,7 @@ CREATE TABLE orcamento (
     selecionado BOOLEAN DEFAULT FALSE,
     empresa VARCHAR(255),
     valor NUMERIC(12, 2), 
-    data DATE, 
+    data TIMESTAMP, 
     comentarios VARCHAR(255),
     item_obra_id INTEGER NOT NULL REFERENCES item_obra(id) ON DELETE CASCADE
 );
@@ -42,8 +42,8 @@ CREATE TABLE orcamento (
 CREATE TABLE execucao (
     id SERIAL PRIMARY KEY,
     comentarios VARCHAR(255),
-    inicio DATE,
-    termino DATE,
+    inicio TIMESTAMP,
+    termino TIMESTAMP,
     item_obra_id INTEGER NOT NULL UNIQUE REFERENCES item_obra(id) ON DELETE CASCADE
 );
 
@@ -51,14 +51,14 @@ CREATE TABLE execucao (
 CREATE TABLE data_adicional (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255),
-    data DATE,
+    data TIMESTAMP,
     execucao_id INTEGER NOT NULL REFERENCES execucao(id) ON DELETE CASCADE
 );
 
 -- 8. Tabela Finalizacao
 CREATE TABLE finalizacao (
     id SERIAL PRIMARY KEY,
-    data DATE,
+    data TIMESTAMP,
     comentarios VARCHAR(255),
     item_obra_id INTEGER NOT NULL UNIQUE REFERENCES item_obra(id) ON DELETE CASCADE
 );
